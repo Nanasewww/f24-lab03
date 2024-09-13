@@ -11,7 +11,7 @@ package edu.cmu.cs.cs214.rec04;
  */
 
 public class DelegationSortedIntList implements IntegerList{
-    private SortedIntList sortedList;
+    private final SortedIntList sortedList;
     private int totalAdded = 0;
 
     public DelegationSortedIntList() {
@@ -30,10 +30,9 @@ public class DelegationSortedIntList implements IntegerList{
     @Override
     public boolean addAll(IntegerList list) {
         for (int i=0; i<list.size(); ++i) {
-            if (!sortedList.add(list.get(i))) {
+            if (!add(list.get(i))) {
                 return false;
             }
-            ++totalAdded;
         }
         return true;
     }
